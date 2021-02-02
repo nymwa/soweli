@@ -4,7 +4,7 @@ import torch
 from soweli.ponart.util import make_tokenizer
 from soweli.kipisi.model import KipisiClassifier
 
-class KipisiWrappen:
+class KipisiWrapper:
     def __init__(self, checkpoint_path = None):
         self.tokenizer = make_tokenizer()
         self.kipisi = KipisiClassifier(len(self.tokenizer.vocab))
