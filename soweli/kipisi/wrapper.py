@@ -18,13 +18,13 @@ class KipisiWrapper:
     def seq_to_tensor(self, seq):
         x = [self.tokenizer.vocab.cls_id] + seq
         x = torch.tensor([x]).T
-        x = x.to(self.ponart.fc.weight.device)
+        x = x.to(self.kipisi.fc.weight.device)
         return x
 
     def infer(self, seq):
-        x = seq_to_tensor(seq)
+        x = self.seq_to_tensor(seq)
         with torch.no_grad():
-            x = model(x)
+            x = self.kipisi(x)
         x = x.argmax(dim = -1).squeeze(-1).cpu().numpy()[1:]
         return x
 
